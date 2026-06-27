@@ -16,6 +16,6 @@ class Book(db.Model):
             "id": self.id,
             "title": self.title,
             "genre": self.genre,
-            "quantity": self.rating,
+            "rating": self.rating,
             "comment": self.comment
         }
