@@ -1,18 +1,17 @@
 
-# @app.route("/")
-# def home():
-#     return "Hello, Flask is running in VS Code!"
-
 from flask import Flask
 from config import Config
 from models.book import db
 from routes.book_routes import book_bp
+from errors.handlers import register_error_handlers
 
 app = Flask(__name__)
 
 app.config.from_object(Config)
 
 db.init_app(app)
+
+register_error_handlers(app)
 
 with app.app_context():
     db.create_all()
