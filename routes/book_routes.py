@@ -24,9 +24,10 @@ def get_book(id):
 @book_bp.route("/books", methods=["POST"])
 def add_book():
 
-    required_fields = ["title", "genre", "rating", "comment"]
+    required_fields = ["title", "genre", "rating", "comment", "img_url"]
 
     data = request.json
+    
 
     # Adding some request validation
     if not data:
@@ -40,7 +41,8 @@ def add_book():
         title=data["title"],
         genre=data["genre"],
         rating=data["rating"],
-        comment=data["comment"]
+        comment=data["comment"],
+        img_url=data["img_url"]
     )
 
     db.session.add(book)
@@ -62,6 +64,7 @@ def update_book(id):
     book.genre = data.get("genre", book.genre)
     book.rating = data.get("rating", book.rating)
     book.comment = data.get("comment", book.comment)
+    book.img_url = data.get("img_url", book.img_url)
 
     db.session.commit()
 
